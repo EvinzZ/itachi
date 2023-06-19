@@ -31,7 +31,7 @@ export default defineConfig(({mode, command}) => {
             proxy: {
                 // https://cn.vitejs.dev/config/#server-proxy
                 '/itachi/api': {
-                    target: 'http://127.0.0.1:9709',
+                    target: 'http://123.56.155.145:9709',
                     // target: 'http://127.0.0.1:9709',
                     // target:`${import.meta.env.VITE_APP_BASE_URL}/${import.meta.env.VITE_APP_BASE_API}`,
                     changeOrigin: true,
