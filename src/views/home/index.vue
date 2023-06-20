@@ -10,19 +10,19 @@
             active-text-color="#409eff"
             router
         >
-          <el-menu-item index="/latest-1">
+          <el-menu-item index="/index/latest/1">
             <span slot="title">最新</span>
           </el-menu-item>
-          <el-menu-item index="/hot-1">
+          <el-menu-item index="/index/hot/1">
             <span slot="title">热门</span>
           </el-menu-item>
-          <el-menu-item index="/mon-1">
+          <el-menu-item index="/index/mon/1">
             <span slot="title">月榜</span>
           </el-menu-item>
-          <el-menu-item index="/week-1">
+          <el-menu-item index="/index/week/1">
             <span slot="title">周榜</span>
           </el-menu-item>
-          <el-menu-item index="/day-1">
+          <el-menu-item index="/index/day/1">
             <span slot="title">日榜</span>
           </el-menu-item>
         </el-menu>
@@ -125,8 +125,10 @@ import IconText from "@/components/IconText"
 import {Delete, Edit, Search, Share, Upload, User} from '@element-plus/icons-vue'
 import {onMounted, ref} from "vue";
 import {getSongChart} from "@/api/home";
+import {useRouter} from 'vue-router';
 
-const activeRouter = ref("/latest-1")
+const $router = useRouter();
+const activeRouter = ref("/index/latest/1")
 const songList = ref([])
 const pageInfo = ref({
   current: 1,
@@ -134,26 +136,27 @@ const pageInfo = ref({
   total: 0,
 })
 const pageShow = ref(false)
-const listType = ref('/latest')
+const listType = ref('latest')
 onMounted(() => {
-  // if (this.$route.params.menu === undefined) {
-  //   this.listType = "/latest";
-  // } else {
-  //   this.listType = '/' + this.$route.params.menu;
-  // }
-  // // 分页处理
-  // if (this.$route.params.current === undefined) {
-  //   this.pageInfo.current = 1;
-  // } else {
-  //   this.pageInfo.current = parseInt(this.$route.params.current);
-  // }
+  if ($router.currentRoute.value.params.menu === undefined) {
+    listType.value = "latest";
+  } else {
+    listType.value = $router.currentRoute.value.params.menu;
+  }
+  // 分页处理
+  if ($router.currentRoute.value.params.current === undefined) {
+    pageInfo.value.current = 1;
+  } else {
+    pageInfo.value.current = parseInt($router.currentRoute.value.params.current);
+  }
   getChart(); // 初始化歌曲列表
   pageShow.value = true; // 处理mounted下页码不更新问题
   // // 路由刷新失效处理
-  // if (window.location.pathname === '/') {
-  //   this.activeRouter = '/latest-1';
+  // if (window.location.pathname === '/index') {
+  //   activeRouter.value = '/index/latest/1';
   // } else {
-  //   this.activeRouter = window.location.pathname;
+  // activeRouter.value = window.location.pathname;
+  activeRouter.value = '/index/' + listType.value + '/1';
   // }
 });
 
@@ -168,37 +171,38 @@ function getChart() {
       pageInfo.value.total = res.data.total;
       pageInfo.value.current = res.data.current;
     } else {
-      this.$message.error(res.message);
+      $message.error(res.message);
     }
   })
 }
 
 function handleSizeChange(val) {
-  this.pageInfo.size = val;
-  this.getChart();
+  pageInfo.value.size = val;
+  getChart();
 }
 
 function handleCurrentChange(val) {
-  this.$router
+  const path = "/index/" +
+      ($router.currentRoute.value.params.menu === undefined
+          ? "latest"
+          : $router.currentRoute.value.params.menu) +
+      "/" +
+      val;
+  $router
       .push({
-        path:
-            "/" +
-            (this.$route.params.menu === undefined
-                ? "latest"
-                : this.$route.params.menu) +
-            "-" +
-            val,
+        path: path
       })
       .catch((err) => {
         return err;
       });
-  this.pageInfo.current = val;
-  this.getChart();
+  activeRouter.value = '/index/' + listType.value + '/1';
+  pageInfo.value.current = val;
+  getChart();
 }
 
 function handleSelect(key, keyPath) {
-  this.listType = key.split('-')[0];
-  this.getChart();
+  listType.value = key.split('/')[2];
+  getChart();
 }
 </script>
 

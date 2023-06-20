@@ -73,16 +73,40 @@ export const constantRoutes = [
     {
         path: '',
         component: Layout,
-        redirect: '/home',
+        redirect: '/index',
+        // meta: {title: '首页', icon: 'dashboard', affix: true},
         children: [
             {
-                path: '/home',
-                component: () => import('@/views/home/index'),
-                name: 'Home',
-                meta: {title: 'home页', icon: 'dashboard', affix: true}
-            }
+                path: "/index/:menu/:current",
+                component: () => import("@/views/index"),
+                // meta: {
+                //     keepAlive: false,
+                // },
+            },
         ]
     },
+
+    // {
+    //     path: '',
+    //     component: Layout,
+    //     redirect: '/home',
+    //     children: [
+    //         {
+    //             path: '/home',
+    //             component: () => import('@/views/home/index'),
+    //             name: 'Home',
+    //             meta: {title: 'home页', icon: 'dashboard', affix: true}
+    //         }
+    //     ]
+    // },
+    // {
+    //     path: "/:menu-:current",
+    //     name: "chart",
+    //     component: () => import("@/views/index"),
+    //     meta: {
+    //         keepAlive: false,
+    //     },
+    // },
     {
         path: '/user',
         component: Layout,
@@ -106,7 +130,7 @@ export const constantRoutes = [
                 path: '/mysql',
                 component: () => import('@/views/mysqls/index'),
                 name: 'Mysql',
-                meta: {title: 'MySQL', icon: 'code', affix: true, noCache: true }
+                meta: {title: 'MySQL', icon: 'code', affix: true, noCache: true}
             }
         ]
     },
@@ -114,25 +138,25 @@ export const constantRoutes = [
         path: '/pgsql',
         component: Layout,
         redirect: 'noredirect',
-        meta: {title: 'PostgreSQL', icon: 'code', affix: true, noCache: true },
+        meta: {title: 'PostgreSQL', icon: 'code', affix: true, noCache: true},
         children: [
             {
                 path: 'genInsert',
                 component: () => import('@/views/pgsqls/genInsert/index'),
                 name: 'genInsert',
-                meta: {title: '生成Insert语句', icon: 'code', affix: true, noCache: true },
+                meta: {title: '生成Insert语句', icon: 'code', affix: true, noCache: true},
             },
             {
                 path: 'getUpdate',
                 component: () => import('@/views/pgsqls/getUpdate/index'),
                 name: 'getUpdate',
-                meta: {title: '生成update语句', icon: 'code', affix: true, noCache: true },
+                meta: {title: '生成update语句', icon: 'code', affix: true, noCache: true},
             },
             {
                 path: 'genEntity',
                 component: () => import('@/views/pgsqls/genEntity/index'),
                 name: 'genEntity',
-                meta: {title: '生成实体', icon: 'code', affix: true, noCache: true },
+                meta: {title: '生成实体', icon: 'code', affix: true, noCache: true},
             }
         ]
     },
@@ -140,31 +164,31 @@ export const constantRoutes = [
         path: '/zifu',
         component: Layout,
         redirect: 'noredirect',
-        meta: {title: '字符工具', icon: 'code', affix: true, noCache: true },
+        meta: {title: '字符工具', icon: 'code', affix: true, noCache: true},
         children: [
             {
                 path: 'getFirstLetter',
                 component: () => import('@/views/zifu/getFirstLetter/index'),
                 name: 'getFirstLetter',
-                meta: {title: '获取拼音首字母', icon: 'code', affix: true, noCache: true },
+                meta: {title: '获取拼音首字母', icon: 'code', affix: true, noCache: true},
             },
             {
                 path: 'getPinyin',
                 component: () => import('@/views/zifu/getPinyin/index'),
                 name: 'getPinyin',
-                meta: {title: '获取拼音', icon: 'code', affix: true, noCache: true },
+                meta: {title: '获取拼音', icon: 'code', affix: true, noCache: true},
             },
             {
                 path: 'toCamelCase',
                 component: () => import('@/views/zifu/toCamelCase/index'),
                 name: 'toCamelCase',
-                meta: {title: '下划线转驼峰', icon: 'code', affix: true, noCache: true },
+                meta: {title: '下划线转驼峰', icon: 'code', affix: true, noCache: true},
             },
             {
                 path: 'toUnderlineCase',
                 component: () => import('@/views/zifu/toUnderlineCase/index'),
                 name: 'toUnderlineCase',
-                meta: {title: '驼峰转下滑', icon: 'code', affix: true, noCache: true },
+                meta: {title: '驼峰转下滑', icon: 'code', affix: true, noCache: true},
             }
         ]
     },
