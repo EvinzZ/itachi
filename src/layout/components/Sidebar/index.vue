@@ -142,6 +142,19 @@ const activeMenu = computed(() => {
   return path;
 })
 
+function handleCommand(command) {
+  switch (command) {
+    case "setLayout":
+      setLayout();
+      break;
+    case "logout":
+      logout();
+      break;
+    default:
+      break;
+  }
+}
+
 </script>
 <style lang='scss' scoped>
 .navbar {

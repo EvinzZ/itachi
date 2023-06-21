@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import '@/assets/iconfont/iconfont.css';
+import '@/assets/iconfont/iconfont.js';
 
 import Cookies from 'js-cookie'
 

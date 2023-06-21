@@ -66,26 +66,23 @@ export const constantRoutes = [
                 path: '/index',
                 component: () => import('@/views/index'),
                 name: 'Index',
-                meta: {title: '首页', icon: 'dashboard', affix: true}
-            }
-        ]
-    },
-    {
-        path: '',
-        component: Layout,
-        redirect: '/index',
-        // meta: {title: '首页', icon: 'dashboard', affix: true},
-        children: [
+                meta: {title: '首页', icon: 'dashboard', affix: true},
+                // children: [
+                //
+                // ]
+            },
             {
                 path: "/index/:menu/:current",
                 component: () => import("@/views/index"),
-                // meta: {
-                //     keepAlive: false,
-                // },
+                hidden: true,
+            },
+            {
+                path: "/song/:id",
+                component: () => import("@/views/song/index"),
+                hidden: true,
             },
         ]
     },
-
     // {
     //     path: '',
     //     component: Layout,
@@ -98,14 +95,6 @@ export const constantRoutes = [
     //             meta: {title: 'home页', icon: 'dashboard', affix: true}
     //         }
     //     ]
-    // },
-    // {
-    //     path: "/:menu-:current",
-    //     name: "chart",
-    //     component: () => import("@/views/index"),
-    //     meta: {
-    //         keepAlive: false,
-    //     },
     // },
     {
         path: '/user',

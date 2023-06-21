@@ -17,6 +17,12 @@
 
 跳转：https://github.com/EvinzZ/paidaxing-hou
 
+## 前端项目
+
+技术栈
+- npm install aplayer --save
+- npm install moment --save
+
 ## 平台简介
 
 * 本仓库为前端技术栈 [Vue3](https://v3.cn.vuejs.org) + [Element Plus](https://element-plus.org/zh-CN) + [Vite](https://cn.vitejs.dev) 版本。
@@ -32,16 +38,16 @@
 git clone https://github.com/yangzongzhuan/RuoYi-Vue3.git
 
 # 进入项目目录
-cd RuoYi-Vue3
+cd itachi
 
 # 安装依赖
-yarn --registry=https://registry.npmmirror.com
+npm install --registry=https://registry.npmmirror.com
 
 # 启动服务
-yarn dev
+npm run dev
 
-# 构建测试环境 yarn build:stage
-# 构建生产环境 yarn build:prod
+# 构建测试环境 npm run build:stage
+# 构建生产环境 npm run build:prod
 # 前端访问地址 http://localhost:80
 ```
 
